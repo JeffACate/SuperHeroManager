@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SuperHeroManager.Models.SuperHero>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-6">These are a few of my favorite heros!!</h1>
+</div>
+<table class="table table-secondary">
+    <thead class="border-2 border-white">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.universe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.alterEgo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.primaryAbility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.secondaryAbility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(superHeros => superHeros.catchPhrase)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table-active">
+        @foreach (var superHero in Model)
+        {
+            <tr >
+                <td>
+                    <a asp-controller="SuperHero" asp-action="Display">@Html.DisplayFor(name => superHero.name)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(universe => superHero.universe)
+                </td>
+                <td>
+                    @Html.DisplayFor(alterEgo => superHero.alterEgo)
+                </td>
+                <td>
+                    @Html.DisplayFor(primaryAbility => superHero.primaryAbility)
+                </td>
+                <td>
+                    @Html.DisplayFor(secondaryAbility => superHero.secondaryAbility)
+                </td>
+                <td>
+                    @Html.DisplayFor(catchPhrase => superHero.catchPhrase)
+                </td>
+                <td >
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
