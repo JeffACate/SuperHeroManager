@@ -71,15 +71,16 @@ namespace SuperHeroManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
-            SuperHero superHero = null;
+            SuperHero superHero;
             try
             {
                 superHero = _context.SuperHeros.Find(id);
                 superHero.name = collection["name"];
+                superHero.alterEgo = collection["alterEgo"];
                 superHero.primaryAbility = collection["primaryAbility"];
                 superHero.secondaryAbility = collection["secondaryAbility"];
-                superHero.alterEgo = collection["alterEgo"];
                 superHero.catchPhrase = collection["catchPhrase"];
+                superHero.universe = collection["universe"];
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
