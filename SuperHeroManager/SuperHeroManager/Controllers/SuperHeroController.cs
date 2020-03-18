@@ -61,7 +61,9 @@ namespace SuperHeroManager.Controllers
         // GET: SuperHero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+
+            SuperHero superHero = _context.SuperHeros.Find(id);
+            return View(superHero);
         }
 
         // POST: SuperHero/Edit/5
@@ -69,13 +71,19 @@ namespace SuperHeroManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
+            SuperHero superHero = null;
             try
             {
-                // TODO: Add update logic here
-
+                superHero = _context.SuperHeros.Find(id);
+                superHero.name = collection["name"];
+                superHero.primaryAbility = collection["primaryAbility"];
+                superHero.secondaryAbility = collection["secondaryAbility"];
+                superHero.alterEgo = collection["alterEgo"];
+                superHero.catchPhrase = collection["catchPhrase"];
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (InvalidOperationException e)
             {
                 return View();
             }
