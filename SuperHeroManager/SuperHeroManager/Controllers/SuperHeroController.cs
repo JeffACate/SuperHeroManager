@@ -84,20 +84,21 @@ namespace SuperHeroManager.Controllers
         // GET: SuperHero/Delete/5
         public ActionResult Delete(int id)
         {
-            SuperHero superHero = _context.SuperHeros.Find(id);
+             SuperHero superHero = _context.SuperHeros.Find(id);
             return View(superHero);
         }
 
         // POST: SuperHero/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(SuperHero superHero, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                SuperHero superHero = _context.SuperHeros.Find(id);
                 _context.SuperHeros.Remove(superHero);
                 _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
