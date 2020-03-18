@@ -28,7 +28,8 @@ namespace SuperHeroManager.Controllers
         // GET: SuperHero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SuperHero superHero = _context.SuperHeros.Find(id);
+            return View(superHero);
         }
 
         // GET: SuperHero/Create
@@ -40,16 +41,19 @@ namespace SuperHeroManager.Controllers
         // POST: SuperHero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(SuperHero superHero)
         {
             try
             {
                 // TODO: Add insert logic here
+                _context.SuperHeros.Add(superHero);
+                _context.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
+                
                 return View();
             }
         }
@@ -80,18 +84,20 @@ namespace SuperHeroManager.Controllers
         // GET: SuperHero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            SuperHero superHero = _context.SuperHeros.Find(id);
+            return View(superHero);
         }
 
         // POST: SuperHero/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(SuperHero superHero, IFormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                _context.SuperHeros.Remove(superHero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

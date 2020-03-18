@@ -1,0 +1,40 @@
+﻿@model SuperHeroManager.Models.SuperHero
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container text-center">
+    <h3 class="display-3 ">@Html.DisplayFor(superhero => superhero.name)</h3>
+    <h5 class="display-5 ">"@Html.DisplayFor(superHero => superHero.catchPhrase)"</h5>
+</div>
+<hr style="background-color:white;" />
+<div class="card bg-secondary container">
+    <form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class="col-6">
+                <label>Alter Ego:</label>
+                <input asp-for="alterEgo" class="form-control" disabled />
+            </div>
+            <div class="col-6">
+                <label>Universe:</label>
+                <input asp-for="universe" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-6">
+                <label>Primary Ability:</label>
+                <input asp-for="primaryAbility" class="form-control" disabled />
+            </div>
+            <div class="col-6">
+                <label>Secondary Ability:</label>
+                <input asp-for="secondaryAbility" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <a asp-controller="SuperHero" asp-action="Index" class="btn btn-outline-info">Return to List</a>
+        </div>
+    </form>
+</div>

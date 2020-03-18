@@ -1,44 +1,44 @@
 ﻿@model IEnumerable<SuperHeroManager.Models.SuperHero>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "View";
 }
 
 <div class="text-center">
     <h1 class="display-6">These are a few of my favorite heros!!</h1>
 </div>
-<table class="table table-secondary">
-    <thead class="border-2 border-white">
+<table class="table table-secondary text-center">
+    <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.universe)
+                Universe
             </th>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.alterEgo)
+                Alter Ego   
             </th>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.primaryAbility)
+                Primary Ability
             </th>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.secondaryAbility)
+                Secondary Ability
             </th>
             <th>
-                @Html.DisplayNameFor(superHeros => superHeros.catchPhrase)
+                Catch Phrase
             </th>
-            <th>
-
+            <th class="text-center">
+                <a type="submit" class="btn btn-outline-info" asp-controller="SuperHero" asp-action="Create">+</a>
             </th>
         </tr>
     </thead>
-    <tbody class="table-active">
+    <tbody class="table-active text-center">
         @foreach (var superHero in Model)
         {
             <tr >
                 <td>
-                    <a asp-controller="SuperHero" asp-action="Display">@Html.DisplayFor(name => superHero.name)</a>
+                    @Html.ActionLink(superHero.name.ToString(), "Details", new { id = superHero.SuperHeroId })
                 </td>
                 <td>
                     @Html.DisplayFor(universe => superHero.universe)
@@ -56,9 +56,8 @@
                     @Html.DisplayFor(catchPhrase => superHero.catchPhrase)
                 </td>
                 <td >
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new {  id= superHero.SuperHeroId }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id= superHero.SuperHeroId })
                 </td>
             </tr>
         }
